@@ -28,15 +28,31 @@ export default class TodoList extends Component {
     }
 
     _addTodo() {
-        this.setState({
-            term: '',
-            todos: [...this.state.todos, this.state.term]
+        fetch('/test-react', { 
+            method: 'post', 
+            body: JSON.stringify({taskName: this.state.term}),
+            headers: {'Content-Type': 'application/json'}
+        })
+        .then(res => res.json())
+        .then(tasks => {
+            this.setState({
+                term: '',
+                todos: tasks
+            })
         })
     }
 
-    _deleteTodo = indexToDelete => {
-        this.setState({
-            todos: this.state.todos.filter((todo, index) => index !== indexToDelete)
+    _deleteTodo = iDToDelete => {
+        fetch('/test-react-delete', {
+            method: 'delete', 
+            body: JSON.stringify({taskID: iDToDelete}),
+            headers: {'Content-Type': 'application/json'}
+        })
+        .then(res => res.json())
+        .then(tasks => {
+            this.setState({
+                todos: tasks
+            })
         })
     }
 
