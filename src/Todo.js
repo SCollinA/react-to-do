@@ -3,10 +3,10 @@ import React from 'react'
 export default function Todo(props){
     return (
     <h1 onClick={() => {
-        console.log(`${props.todo} task complete`)
+        console.log(`${props.todo.name} task complete`)
         props.deleteTodo(props.index)
     }}>
-    {props.todo}
+    {props.todo.name}
     </h1>
     )
 }

@@ -16,7 +16,7 @@ export default class TodoList extends Component {
         .then(res => res.json())
         .then(tasks => {
             this.setState({
-                todos: tasks.map(task => task.name)
+                todos: tasks
             })
         })
     }
