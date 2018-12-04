@@ -11,6 +11,15 @@ export default class TodoList extends Component {
         }
     }
 
+    componentDidMount() {
+        fetch('/test-react')
+        .then(res => res.json())
+        .then(tasks => {
+            this.setState({
+                todos: tasks.map(task => task.name)
+            })
+        })
+    }
     _updateSearch = searchTerm => {
         console.log(`Search Term: ${searchTerm}`)
         this.setState({
